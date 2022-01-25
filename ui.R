@@ -80,14 +80,14 @@ ui <- shinyUI(
     # Forme de l'application
     dashboardSidebar(
       sidebarMenu(id="sidebar",
-          menuItem("Accueil", tabName = "home", icon = icon("th")),
-          menuItem("Introduction", tabName = "Introduction", icon = icon("th")),
-          menuItem("Méthodologie", tabName = "Methodologie", icon = icon("th")),
-          menuItem("Traitement initial", tabName = "Ttt", icon = icon("th")),
-          menuItem("Données", tabName = "Donnees", icon = icon("th")),
-          menuItem("Résultats", tabName = "Methodes", icon = icon("th")),
-          menuItem("Comparer les méthodes", tabName = "Comparaison", icon = icon("th")),
-          menuItem("Contact", tabName = "propos", icon = icon("th"))
+                  menuItem("Accueil", tabName = "home", icon = icon("th")),
+                  menuItem("Introduction", tabName = "Introduction", icon = icon("bookmark")),
+                  menuItem("MÃ©thodologie", tabName = "Methodologie", icon = icon("book")),
+                  menuItem("Traitement initial", tabName = "Ttt", icon = icon("cog")),
+                  menuItem("DonnÃ©es", tabName = "Donnees", icon = icon("th")),
+                  menuItem("RÃ©sultats", tabName = "Methodes", icon = icon("folder")),
+                  menuItem("Comparer les mÃ©thodes", tabName = "Comparaison", icon = icon("tasks")),
+                  menuItem("Contact", tabName = "propos", icon = icon("globe"))
       )
     ),
     
