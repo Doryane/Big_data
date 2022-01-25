@@ -1,0 +1,37 @@
+
+  output$result4 <- renderPlot({
+    if (input$method == "Lasso") {
+      lasso_prob <- predict(model_cv_lasso,newx = x_test,s=lambda_cv,type="response")
+      roc(test$V2,as.vector(lasso_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)}
+    
+    else if (input$method == "Ridge") {
+      ridge_prob <- predict(model_cv_ridge,newx = x_test,s=lambda_cv_ridge,type="response")
+      roc(test$V2,as.vector(ridge_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
+    }
+    
+    else if (input$method == "Adaptive Lasso") {
+      alasso_prob <- predict(model_cv_alasso,newx = x_test,s=adalasso.fit$lambda.min,type="response")
+      roc(test$V2,as.vector(alasso_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
+    }
+    
+    else if (input$method == "Elastic Net") {
+      elastic_prob <- predict(model_cv_elastic,newx = x_test,s=lambda_cv,type="response")
+      roc(test$V2,as.vector(elastic_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
+    }
+    
+    else if (input$method == "Gradient Boosting") {
+      gb_prob <- predict(model, x_test)
+      roc(test$V2,as.vector(gb_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
+      
+    }
+    
+    else if (input$method == "Random Forest") {
+    }
+    
+    else {print('error')}
+    
+  })
+  
+  output$result5 <- renderTable(Tab_Comp)
+  
+ }

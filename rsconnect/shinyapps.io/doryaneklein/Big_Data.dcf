@@ -1,0 +1,13 @@
+name: Big_Data
+title: Big_Data
+username:
+account: doryaneklein
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5502096
+bundleId: 5505656
+url: https://doryaneklein.shinyapps.io/Big_Data/
+when: 1643105629.56471
+lastSyncTime: 1643105629.56471
+asMultiple: FALSE
+asStatic: FALSE

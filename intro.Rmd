@@ -1,0 +1,12 @@
+---
+output: html_document
+---
+
+
+# Introduction
+
+L'objectif de cette application est de comparer les différents concepts relatifs aux méthodes de pénalisations et d'aggrégations. Nous souhaitons prévoir la probabilité de défaut à partir d'un certains nombres de prédicteurs, ainsi, la mise en compétition des algorithmes et méthodes de classification nous permet de sélectionner celui qui présente le plus fort pouvoir de généralisation.
+
+Nous présenterons les méthodes Lasso, Adaptative Lasso, Elastic Net, Ridge, Random Forest, Ada Boost et Gradient Boosting.
+
+En premier lieu, nous présenterons les données utilisés, puis une explication synthétiques des méthodes de pénalisations et d'aggrégations. Dans l'onglet "Différentes méthodes" vous pourrez appliquer directement les méthodes présentés en amont, enfin nous comparerons à l'aide d'indicateurs la méthode la plus performante.

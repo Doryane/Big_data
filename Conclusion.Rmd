@@ -1,0 +1,7 @@
+---
+title: "Conclusion"
+output: html_document
+---
+A l'aide des résultats, on remarque que la méthode Gradient Boosting est la plus performante. En se basant ur l'AUC, les méthodes de Lasso, Adaptative Lasso, Ridge et Elastic Net sont quasiment similaire, avec des AUC au alentours de 0.708. Toujours en ce basant sur l'AUC, la méthode la moins performante serait celle de l'Adaptative Lasso.
+
+La similarité des résultats des différentes méthodes se lit également dans les taux de bonne et mauvaise classification. En effet, les résultats sont assez similaire d'une méthode à l'autre, le taux de bonne classification variant aux alentours de 93.3% et le taux de mauvaise classification variant aux alentours de 6.7%. En se basant sur les critères de bonnes et mauvaise classification, on remarque que le Gradient Boosting est encore une fois la méthode la plus performante.

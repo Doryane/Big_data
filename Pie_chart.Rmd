@@ -1,0 +1,40 @@
+
+
+```{r, echo = FALSE}
+
+library(dplyr)
+
+df <- read.table("kaggle.txt")
+df <- df[-1]
+df <- na.omit(df)
+
+smp_size <- floor(0.70 * nrow(df))
+
+set.seed(123)
+train_df <- sample(seq_len(nrow(df)), size = smp_size)
+
+train <- df[train_df, ]
+test <- df[-train_df, ]
+
+train$sep <- "train"
+test$sep <- "test"
+
+Nb_train <- count(train, vars = sep)
+Nb_test <- count(test, vars = sep)
+
+df_sep <- rbind(Nb_train,Nb_test)
+
+df_sep <- df_sep %>% 
+  rename(
+    Class = vars,
+    N = n
+  )
+
+
+library(ggplot2)
+
+ggplot(df_sep, aes(x="", y=N, fill=Class)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0)
+
+```

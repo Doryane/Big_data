@@ -1,0 +1,4 @@
+ model_rf <- randomForest(x=train[,-1],y=y,ntree = 600)
+      y.random <- predict(model_rf, newdata = x_test)
+      print(table(y.random,ytest))
+      
