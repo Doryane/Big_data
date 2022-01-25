@@ -1,0 +1,125 @@
+---
+title: "Resultats"
+output: html_document
+params:
+  n: NA
+  roc_lasso: NA
+  roc_ridge: NA
+  roc_al: NA 
+  roc_el: NA 
+  roc_gb: NA
+  roc_rf: NA
+  roc_ada: NA
+  
+  lasso_table: NA
+  ridge_table: NA
+  al_table: NA
+  el_table: NA
+  gb_table: NA 
+  rf_table: NA
+  gbm_table: NA
+  
+  Resume_lasso: NA
+  Resume_ridge: NA
+  Resume_al: NA
+  Resume_el: NA
+  Resume_gb: NA
+  Resume_rf: NA
+  Resume_gbm: NA
+---
+
+
+
+# Resultats pour la méthode choisie
+
+```{r echo=F, include=TRUE}
+
+if (params$n == "Lasso") {
+  print("Vous avez choisi la méthode Lasso")
+  }else if (params$n == "Ridge") {
+   print("Vous avez choisi la méthode Ridge")
+  }else if (params$n == "Adaptive Lasso") {
+   print("Vous avez choisi la méthode Adaptative Lasso")
+  }else if (params$n == "Elastic Net") {
+    print("Vous avez choisi la méthode Elastic Net")
+    }else if (params$n == "Gradient Boosting") {
+     print("Vous avez choisi la méthode Gradient Boosting")
+    }else if (params$n == "Random Forest") {
+       print("Vous avez choisi la méthode Random Forest")
+    }else if (params$n == "ADA Boost") {
+       print("Vous avez choisi la méthode ADA Boost")
+    }else {print('error')}
+
+```  
+
+## Courbe ROC
+
+
+```{r echo=F, include=TRUE}
+
+if (params$n == "Lasso") {
+  plot(params$roc_lasso)
+  }else if (params$n == "Ridge") {
+  plot(params$roc_ridge)
+  }else if (params$n == "Adaptive Lasso") {
+  plot(params$roc_al)
+  }else if (params$n == "Elastic Net") {
+    plot(params$roc_el)
+    }else if (params$n == "Gradient Boosting") {
+    plot(params$roc_gb)
+    }else if (params$n == "Random Forest") {
+    plot(params$roc_rf)
+    }else if (params$n == "ADA Boost") {
+    plot(params$roc_ada)
+    }else {print('error')}
+
+```  
+    
+## Matrice de confusion
+
+```{r echo=F, include=TRUE}
+library(knitr)
+
+if (params$n == "Lasso") {
+    kable(params$lasso_table)
+    }else if (params$n == "Ridge") {
+    kable(params$ridge_table)
+    }else if (params$n == "Adaptive Lasso") {
+    kable(params$al_table)
+    }else if (params$n == "Elastic Net") {
+    kable(params$el_table)
+    }else if (params$n == "Gradient Boosting") {
+    kable(params$gb_table)
+    }else if (params$n == "Random Forest") {
+    kable(params$rf_table)
+    }else if (params$n == "ADA Boost") {
+    kable(params$gbm_table)
+    }else {print('error')}
+
+```
+
+## Resume des indicateurs
+
+```{r echo=F, include=TRUE}
+
+if (params$n == "Lasso") {
+    kable(params$Resume_lasso)
+    }else if (params$n == "Ridge") {
+    kable(params$Resume_ridge)
+    }else if (params$n == "Adaptive Lasso") {
+    kable(params$Resume_al)
+    }else if (params$n == "Elastic Net") {
+    kable(params$Resume_el)
+    }else if (params$n == "Gradient Boosting") {
+    kable(params$Resume_gb)
+    }else if (params$n == "Random Forest") {
+    kable(params$Resume_rf)
+    }else if (params$n == "ADA Boost") {
+    kable(params$Resume_gbm)
+    }else {print('error')}
+
+```
+
+
+
+    

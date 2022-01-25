@@ -2,7 +2,7 @@
 output: html_document
 ---
 
-## Traitement
+# Traitement
 
 
 Nous utilisons un ensemble de données populaire fourni par une institution financière pour la compétition Kaggle « Donnez-moi du crédit ».
@@ -19,20 +19,11 @@ La base de donnée fournie comportait un grand nombre de valeurs manquantes. Nou
 
 Nous avons donc imputées celles-ci par la moyenne relative à chaque variable. 
 
-Par exemple pour la variable V7 correspondant au montant des revenus :
+Par exemple pour la variable V7 correspondant au montant des revenus mensuels :
 
-| Observation | V7 | 
-|:-------:|:-------:|
-|1|9120|
-|2|2600|
-|3|3042|
-|4|3300|
-|5|63588|
-|6|3500|
-|7|NaN|
-|8|3500|
-|9|NaN|
-
+```{r pressure, echo=FALSE, fig.align="center",out.width = '25%'}
+knitr::include_graphics("Images/imattt.png")
+```
 
 Nous avons remplacé ces "NaN" par la moyenne de la variable V7, soit par la valeur 6670.221.
 

@@ -1,0 +1,11 @@
+---
+output: html_document
+---
+
+
+# Explications des données
+
+La base de données Kaggle possédait initialement 150 000 observations. "Give me some credit" comporte plusieurs variables prédictives et une variable de réponse binaire mesurant le défaut. 
+
+Les variables nous procurent des informations sur les caractéristiques des individus de la base (age, revenue mensuel, nombre de membre dépendant dans la famille) et la forme d'application  (nombre d'hypothèques et prêt immobilier, le payement mensuel de dette, le solde du compte de la carte bancaire, ect..). Le jeu de données comportent 10 prédicteurs quantitatifs.
+

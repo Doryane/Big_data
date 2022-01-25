@@ -7,9 +7,11 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
+#rsconnect::configureApp("Big_Data", size = "xxxlarge")
 
+library(shiny)
 library("readxl")
+
 data=read.csv("kaggle.csv",header = TRUE, sep = ",", quote = "\"",
               dec = ".", fill = TRUE)
 
@@ -286,23 +288,6 @@ ADA_boost = round(c(AUC_gbm,sensibilite_gbm,specificite_gbm,Tx_bon_class_gbm,Tx_
 Tab_Comp = cbind(Indice,Lasso,Adaptative_Lasso,Ridge,Elastic_Net,Gradient_Boosting,Random_forest,ADA_boost)
 Tab_Comp = as.data.frame(Tab_Comp)
 
-########################## GRAPHIQUE DE COMPARAISON ############################
-
-
-lasso_prob <- predict(model_cv_lasso,newx = x_test,s=lambda_cv,type="response")
-ridge_prob <- predict(model_cv_ridge,newx = x_test,s=lambda_cv_ridge,type="response")
-alasso_prob <- predict(model_cv_alasso,newx = x_test,s=adalasso.fit$lambda.min,type="response")
-elastic_prob <- predict(model_cv_elastic,newx = x_test,s=lambda_cv,type="response")
-gb_prob <- predict(model, x_test)
-rf.probs <- predict(rf,data=test)
-
-roc_lasso <- roc(test$V2,as.vector(lasso_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="orangered",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-roc_ridge <- roc(test$V2,as.vector(ridge_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="snow2",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-roc_alasso <- roc(test$V2,as.vector(alasso_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="hotpink",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-roc_elastic <- roc(test$V2,as.vector(elastic_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="violetred4",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-roc_gb <- roc(test$V2,as.vector(gb_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-roc_rf <- roc(test$V2,as.vector(rf.probs$predictions[,2]),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-roc_ada <- roc(test$V2,as.vector(gbm_predicted),plot=TRUE,legacy.axes=TRUE, lwd=2, col="lightseagreen",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
 
 ####################### Partie serveur #########################################
 
@@ -534,18 +519,7 @@ server <- function(input, output,session) {
   
   
   
-  output$result5 = DT::renderDataTable({Tab_Comp}, options = list(
-    pageLength = 15, autoWidth = TRUE,
-    columnDefs = list(list( targets = 2, width = '50px')),
-    scrollX = TRUE
-  ))
   
-  output$result6 <- renderPlot(
-    ggroc(list("Roc Lasso" = roc_lasso , "Roc ridge" = roc_ridge,
-               "Roc adaptive Lasso" = roc_ridge, "Roc Elastic Net" = roc_elastic,
-               "Roc Gradient Boosting" = roc_gb, "Roc Random Frest" = roc_rf,
-               "Roc ADA Gradient Boosting" = roc_ada))
-  )
   
   getPage4<-function() {
     return(includeHTML("Conclusion.html"))

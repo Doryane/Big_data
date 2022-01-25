@@ -13,32 +13,28 @@ Une solution à ce fléau consiste à faire appel  des méthodes de réduction d
 
 Les méthodes de pénalisation permettent de régler le problème de la multicolinéarité entre les variables dû aux données massives.
 
-Pour cela, nous allons introduire le paramètre $\lambda$ dans la régression pour permettre de réduire la variabilité de l'estimateur MCO.
-Le $\lambda$ contrôle l'amplitude des coefficients ou leur niveau de rétrécissement.
+Pour cela, nous allons introduire le paramètre λ dans la régression pour permettre de réduire la variabilité de l'estimateur MCO.
+Le λ contrôle l'amplitude des coefficients ou leur niveau de rétrécissement.
 
-Lorsque $\lambda$ tend vers 0, le terme de pénalité n'a aucun effet, la régression produira les coefficient classiques des MCO. Lorsque $\lambda$ tend vers infini, l'impact de la pénalité augmente et les coefficients se rapprochent de 0.
+Lorsque λ tend vers 0, le terme de pénalité n'a aucun effet, la régression produira les coefficient classiques des MCO. Lorsque λ tend vers infini, l'impact de la pénalité augmente et les coefficients se rapprochent de 0.
 
-La valeur optimale du paramètre de régularisation $\lambda$ peut être obtenue par validation croisée.
+La valeur optimale du paramètre de régularisation λ peut être obtenue par validation croisée.
 
 
 ## Régression Ridge : 
 
 La régression Ridge correspond à la méthode des MCO sous une contrainte d'inégalité portant sur les coefficients : 
 
-$$
-\left\{\begin{array}{l}
-\hat{\beta}=\underset{\beta}{\arg \min } \sum_{i=1}^{n}\left(y_{i}-x_{i} \beta\right)^{2} \\
-\text { s.c. } \sum_{j=1}^{p} \beta_{j}^{2} \leq t
-\end{array}\right.
-$$
+```{r pic1, echo=FALSE, fig.align="center", out.width = '25%'}
+knitr::include_graphics("Images/Ridge.JPG")
+```
 
 La fonction objective à minimiser équivaut à : 
+```{r pic2, echo=FALSE, fig.align="center", out.width = '35%'}
+knitr::include_graphics("Images/Ridge2.JPG")
+```
 
-$$
-\operatorname{PRSS}(\beta)=(y-X \beta)^{T}(y-X \beta)+\lambda\ \sum_{j=1}^{p} \beta_{j}^{2}
-$$
-
-Cette fonction à la particulatité de ne pas annuler les coefficients $\beta$ mais de les réduire et de les faire tendre vers 0.
+Cette fonction à la particulatité de ne pas annuler les coefficients β mais de les réduire et de les faire tendre vers 0.
 
 
 ## Régression Lasso : 
@@ -47,18 +43,15 @@ Cette pénalisation est adaptée lorsque p ≥ n. Elle peut être utile aussi da
 
 La régression Lasso correspond à la méthode des MCO sous une contrainte d'une norme 1 : 
 
-$$
-\left\{\begin{array}{l}
-\hat{\beta}=\underset{\beta}{\arg \min } \sum_{i=1}^{n}\left(y_{i}-x_{i} \beta\right)^{2} \\
-\text { s.c. } \sum_{j=1}^{p} |\beta_{j}| \leq t
-\end{array}\right.
-$$
+```{r pic3, echo=FALSE, fig.align="center", out.width = '25%'}
+knitr::include_graphics("Images/Lasso.JPG")
+```
 
 La fonction objective à minimiser équivaut à : 
 
-$$
-\operatorname{PRSS}(\beta)=(y-X \beta)^{T}(y-X \beta)+\lambda\ \sum_{j=1}^{p} |\beta_{j}|
-$$
+```{r pic4, echo=FALSE, fig.align="center", out.width = '35%'}
+knitr::include_graphics("Images/Lasso2.JPG")
+```
 
 <p style='text-align: justify;'> 
 Contrairement à la régression Ridge qui réduit les coefficients vers 0 sans les annuler, la régression Lasso réduit les coefficient les plus élevés vers 0 et annule les coefficient les plus failes.
@@ -71,11 +64,11 @@ La régression Elastic Net combine à la fois les pénalisations Ridge et Lasso 
 
 La fonction objective à minimiser équivaut à : 
 
-$$
-\operatorname{PRSS}(\beta)=(y-X \beta)^{T}(y-X \beta)+\lambda_2\ \sum_{j=1}^{p} \beta_{j}^{2} + \lambda_1\ \sum_{j=1}^{p} |\beta_{j}|
-$$
+```{r pic5, echo=FALSE, fig.align="center", out.width = '45%'}
+knitr::include_graphics("Images/ElasticNet.JPG")
+```
 
-avec $\lambda_1$ et $\lambda_2$ les deux paramètres de régularisation Lasso et Ridge respectivement.
+avec λ1 et λ2 les deux paramètres de régularisation Lasso et Ridge respectivement.
 
 Cette méthode permet de faire de la sélection de plus de n variables et faire de la sélection groupée de variables corrélées dès lors qu'une est admise dans le modèle. 
 
@@ -87,12 +80,12 @@ L'estimateur est construit comme le Lasso, mais en réalisant une pénalisation 
 Cette méthode à la capacité de mieux sélectionner les variables pertinentes car elle permet d'annuler le risque de selectionner des variables correspondant à du bruit. 
 
 La fonction objective à minimiser équivaut à : 
-$$
-\operatorname{PRSS}(\beta)=(y-X \beta)^{T}(y-X \beta)+ \lambda\ \sum_{j=1}^{p} w_j  |\beta_{j}|
-$$
-$$ w_j= \frac{1}{|\hat{\beta_{j}}|^{v}}$$ 
-Avec $\hat{\beta_{j}}$ l'estimateur MCO univarié de $\beta_{j}$ et $v>0$ 
-
+```{r pic6, echo=FALSE, fig.align="center", out.width = '40%'}
+knitr::include_graphics("Images/Adaptive.JPG")
+```
+```{r pic7, echo=FALSE, fig.align="center",out.width = '35%'}
+knitr::include_graphics("Images/Mess.JPG")
+```
 
 
 
@@ -102,8 +95,8 @@ Avec $\hat{\beta_{j}}$ l'estimateur MCO univarié de $\beta_{j}$ et $v>0$
 
 Un random forest est constitué d'un ensemble d'arbres de décision indépendants.
 
-```{r pressure, echo=FALSE, out.width = '35%'}
-knitr::include_graphics("RAN1.png")
+```{r pressure, echo=FALSE, fig.align="center",out.width = '35%'}
+knitr::include_graphics("Images/RAN1.png")
 ```
 
 
@@ -120,8 +113,8 @@ Les random forests réduisent la variance observée dans les arbres de décision
 
 La prédiction faite par le random forest pour des données inconnues est alors la moyenne (ou le vote, dans le cas d'un problème de classification) de tous les arbres.
 
-```{r pressure2, echo=FALSE, out.width = '50%'}
-knitr::include_graphics("images/RAN2.png")
+```{r pressure2, echo=FALSE, fig.align="center", out.width = '50%'}
+knitr::include_graphics("Images/RAN2.png")
 ```
 
 
@@ -134,8 +127,8 @@ Pour le Boosting, les algorithmes ne sont plus indépendants. Au contraire, chaq
 Pour demander la prédiction d’Adaboost sur une observation, il faut interroger chaque « weak learner » et pondérer chaque réponse en fonction de la note qu’ils ont obtenu. 
 La prédiction du « strong learner » sera la moyenne de toutes les réponses des « weak learner ».
 
-```{r pressure3, echo=FALSE, out.width = '50%'}
-knitr::include_graphics("images/RAN2.png")
+```{r pressure3, echo=FALSE, fig.align="center", out.width = '50%'}
+knitr::include_graphics("Images/ADA.png")
 ```
 
 

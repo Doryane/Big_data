@@ -68,9 +68,6 @@ attach(df3)
 
 
 
-
-
-
 ui <- shinyUI(
   dashboardPage(
     
@@ -82,11 +79,11 @@ ui <- shinyUI(
       sidebarMenu(id="sidebar",
                   menuItem("Accueil", tabName = "home", icon = icon("th")),
                   menuItem("Introduction", tabName = "Introduction", icon = icon("bookmark")),
-                  menuItem("MÃ©thodologie", tabName = "Methodologie", icon = icon("book")),
+                  menuItem("Méthodologie", tabName = "Methodologie", icon = icon("book")),
                   menuItem("Traitement initial", tabName = "Ttt", icon = icon("cog")),
-                  menuItem("DonnÃ©es", tabName = "Donnees", icon = icon("th")),
-                  menuItem("RÃ©sultats", tabName = "Methodes", icon = icon("folder")),
-                  menuItem("Comparer les mÃ©thodes", tabName = "Comparaison", icon = icon("tasks")),
+                  menuItem("Données", tabName = "Donnees", icon = icon("th")),
+                  menuItem("Résultats", tabName = "Methodes", icon = icon("folder")),
+                  menuItem("Comparer les méthodes", tabName = "Comparaison", icon = icon("tasks")),
                   menuItem("Contact", tabName = "propos", icon = icon("globe"))
       )
     ),
@@ -229,7 +226,7 @@ ui <- shinyUI(
                           solidHeader = TRUE,
                           plotOutput("result4")),
                   
-                  box(title = "Generer un rapport pour la methode choisit",
+                  box(title = "Générer un rapport pour la methode choisit",
                       status = "primary",
                       solidHeader = TRUE,
                       downloadButton("Resultats", "Generate report"))
@@ -242,11 +239,11 @@ ui <- shinyUI(
         tabItem(tabName = "Comparaison",
                 add_busy_spinner(spin = "fading-circle"),
                   htmlOutput("ccl"),
-                  h2("Tableau de comparaison"),
-                DT::dataTableOutput("result5"),
-                  h2("Graphiques des AUC"),
-                  plotOutput("result6")
-                  ),
+                h2("Tableau de comparaison"), 
+                fluidRow(align='center',tags$img(src = "Tableau.JPG")), 
+                tags$br(), 
+                h2("Graphiques des AUC"),tags$br(), tags$br(),
+                fluidRow(tags$img(src = "Roc.JPG", width = 1500))),
         
         # Table a propos
         
@@ -255,7 +252,7 @@ ui <- shinyUI(
                 fluidRow(
                   h1(strong(" Cette application à été développée par trois étudiantes du master ESA :"), align="center",style = "font-size:30px;"),
                   tags$br(),tags$br(),
-                  div(img(src = "MASTER.jpg", height = 100, width = 600),style="text-align:center;"),
+                  div(img(src = "MASTER.JPG", height = 100, width = 600),style="text-align:center;"),
                   tags$br(),tags$br(),
                   tags$div(class = "col-md-4", align='center',
                            h1("Doryane Klein"), tags$img(src="Doryane.jpg"), tags$br(), tags$a(href = "mailto:doryane.klein@etu.univ-orleans.fr", "E-mail")),
@@ -271,7 +268,7 @@ ui <- shinyUI(
                   h1(strong("Merci"), align="center",style = "font-size:30px;")
                   
                 )
-        )
+         )
        )
       )
     )

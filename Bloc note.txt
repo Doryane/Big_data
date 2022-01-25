@@ -1,61 +1,20 @@
 
-```{r echo=F, include=TRUE}
 
-if (params$n == "Lasso") {
-    roc(params$ntest$V2,as.vector(params$lasso_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="lightseagreen",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-    }else if (params$n == "Ridge") {
-    roc(test$V2,as.vector(ridge_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="lightseagreen",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-    }else if (params$n == "Adaptive Lasso") {
-   roc(test$V2,as.vector(alasso_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="lightseagreen",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-    }else if (params$n == "Elastic Net") {
-    roc(test$V2,as.vector(elastic_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="lightseagreen",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-    }else if (params$n == "Gradient Boosting") {
-    roc(test$V2,as.vector(gb_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="lightseagreen",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-    }else if (params$n == "Random Forest") {
-    }else {print('error')}
 
-roc(test$V2,as.vector(gb_prob),plot=TRUE,legacy.axes=TRUE, lwd=2, col="lightseagreen",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
-```
+ else if (input$method == "Random Forest") {
+      set.seed(123456)
+      #paste(err,round(a,4))
+      print(classifier_rf)
+    }
+    
 
-## Matrice de confusion
+ else if (input$method == "Random Forest") {
+      set.seed(123456)
+      table(test$V2,rf.pred)
+    }
 
-```{r echo=F, include=TRUE}
-library(knitr)
 
-if (params$n == "Lasso") {
-    kable(params$asso_table)
-    }else if (params$n == "Ridge") {
-    kable(ridge_table)
-    }else if (params$n == "Adaptive Lasso") {
-    kable(al_table)
-    }else if (params$n == "Elastic Net") {
-    kable(el_table)
-    }else if (params$n == "Gradient Boosting") {
-    kable(gb_table)
-    }else if (params$n == "Random Forest") {
-    }else {print('error')}
-
-```
-
-## Resume des indicateurs
-
-```{r echo=F, include=TRUE}
-
-if (params$n == "Lasso") {
-    kable(params$Resume_lasso)
-    }else if (params$n == "Ridge") {
-    kable(Resume_ridge)
-    }else if (params$n == "Adaptive Lasso") {
-    kable(Resume_al)
-    }else if (params$n == "Elastic Net") {
-    kable(Resume_el)
-    }else if (params$n == "Gradient Boosting") {
-    kable(Resume_gb)
-    }else if (params$n == "Random Forest") {
-    }else {print('error')}
-
-```
-
- 
-# The `params` object is available in the document.
-params$n
+else if (input$method == "Random Forest") {
+      set.seed(123456)
+      roc(test$V2,as.vector(rf.probs[,2]),plot=TRUE,legacy.axes=TRUE, lwd=2, col="red",auc.polygon=TRUE,print.auc=TRUE,grid=TRUE)
+    }
